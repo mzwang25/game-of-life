@@ -4,9 +4,9 @@
 ;==================================================
 
 (define SCALE 10)
-(define MAX-X 10)
-(define MAX-Y 10)
-(define UPDATE-INTERVAL 500)
+(define MAX-X 50)
+(define MAX-Y 50)
+(define UPDATE-INTERVAL 50)
 ;==================================================
 
 (define (int->str x)
@@ -167,11 +167,18 @@
 
 
 ;==================================================
+; Runner
 
-
-(draw-at 3 3)
-(draw-at 3 4)
-(draw-at 3 5)
+(draw-at 11 19)
+(draw-at 13 19)
+(draw-at 13 18)
+(draw-at 15 17)
+(draw-at 15 16)
+(draw-at 15 15)
+(draw-at 17 16)
+(draw-at 17 15)
+(draw-at 17 14)
+(draw-at 18 15)
 
 
 (define (getNextStep x)
@@ -179,7 +186,6 @@
           (a (loop addToFlip 0 0))
           (b (updateAll toFlip clearToFlip))
        )
-
     #t
   )
 
