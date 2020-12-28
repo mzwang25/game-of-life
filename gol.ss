@@ -67,6 +67,7 @@
 
 ; loops through all coordinates starting from (x,y)
 ; and calls the function "call" with the coordinate
+; ex: `(loop (λ (x y) (display (colored? x y)) ) 0 0)`
 (define (loop call x y)
   (let (
       (a (call x y))
@@ -82,4 +83,32 @@
   )
 )
 
-(loop (λ (x y) (display (colored? x y)) ) 0 0)
+;==================================================
+;Neighor Checks
+
+(define (NBAlive x y)
+  (let (
+      (a (if (colored? (+ x 1) (+ y 0)) 1 0))
+      (b (if (colored? (+ x 0) (+ y 0)) 1 0))
+      (c (if (colored? (+ x 1) (+ y 1)) 1 0))
+      (d (if (colored? (+ x 0) (+ y 1)) 1 0))
+      (e (if (colored? (- x 1) (- y 0)) 1 0))
+      (f (if (colored? (- x 0) (- y 0)) 1 0))
+      (g (if (colored? (- x 1) (- y 1)) 1 0))
+      (h (if (colored? (- x 0) (- y 1)) 1 0))
+    )
+    (+ a b c d e f g h)
+  )
+)
+
+(define (3NBAlive x y)
+  (= (NBAlive x y) 3))
+
+(define (2Or3NBAlive x y)
+  (let (
+    (num (NBAlive x y))
+    )
+    (or (= num 3) (= num 2))  
+  )
+)
+
