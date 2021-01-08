@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <omp.h>
 #include <sys/ioctl.h>
 
 #define LOC(i,j) (((i) % MAX_X) * MAX_Y + ((j) % MAX_Y))
@@ -19,7 +20,7 @@ draw(char* grid)
     for(int j = 0; j < MAX_Y; j++)
     {
       if(grid[LOC(i,j)]) printf("\u2596");
-      else printf(" ");
+      else printf(".");
 
     }
     printf("\n");
@@ -46,6 +47,7 @@ update(char* grid, char* swap)
 {
   memcpy(swap, grid, MAX_X * MAX_Y);
 
+  #pragma omp parallel for
   for(int i = 0; i < MAX_X; i++)
   {
     for(int j = 0; j < MAX_Y; j++)
@@ -95,7 +97,7 @@ main()
     draw(grid);
     update(grid, swap);
     //exit(1);
-    usleep(200000);
+    usleep(100000);
   }
 
   return 0;
