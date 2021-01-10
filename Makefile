@@ -7,4 +7,5 @@ gol-tty: gol.c
 	gcc -o gol-tty gol.c -fopenmp
 
 clean:
-	rm -rf gol
+	rm -rf gol-gui
+	rm -rf gol-tty
